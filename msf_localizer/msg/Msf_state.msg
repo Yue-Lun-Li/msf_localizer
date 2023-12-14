@@ -1,0 +1,19 @@
+Header header
+
+float64 pos_n
+float64 pos_e
+float64 pos_d
+float64 vel_n
+float64 vel_e
+float64 vel_d
+float64 acc_n
+float64 acc_e
+float64 acc_d
+float64 roll
+float64 pitch
+float64 yaw
+float64 w_x
+float64 w_y
+float64 w_z
+float64 time_cost
+float64 reliability

@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- ROS topic interface -->
+    <!-- subscribed topics-->
+    <arg name="IMU_topic" default="/ublox_f9k/imu_meas"/>
+    <arg name="GPS_topic" default="/ublox_f9k/fix"/>
+    <arg name="GPS_RPY_topic" default="/ublox_f9k/navatt"/>
+    <arg name="GPS_Info_topic" default="/ublox_f9k/navpvt"/>
+    <arg name="CAN_topic" default="/can_info"/>
+    <arg name="NDT_topic" default="/ndt_pose"/>
+    <arg name="NDT_RPY_topic" default="/ndt/rpy"/>
+    <arg name="NDT_Reliability_topic" default="/ndt_reliability"/>
+    <arg name="NDT_Status_topic" default="/ndt_stat"/>
+
+    <!-- published topics-->
+    <arg name="MSF_output_pose_topic" default="/msf_localizer/msf_pose"/>
+    <arg name="MSF_output_state_topic" default="/msf_localizer/msf_state"/>
+    <arg name="MSF_output_fix_topic" default="/msf_localizer/msf_fix"/>
+    <!-- ROS topic interface -->
+
+    <!-- MSF mode choosed -->
+    <arg name="gps_mode" default="true"/>
+    <arg name="ndt_mode" default="true"/>
+    <arg name="can_mode" default="true"/>
+    <!-- MSF mode choosed -->
+
+    <!-- parameter setting -->
+    <arg name="antenna_tf_x" default="0.29"/>
+    <arg name="antenna_tf_y" default="0"/>
+    <arg name="antenna_tf_z" default="1.565"/>
+
+    <arg name="imu_bias_angular_vel_x" default="0.0023"/>
+    <arg name="imu_bias_angular_vel_y" default="-0.00062705"/>
+    <arg name="imu_bias_angular_vel_z" default="0.00089237"/>
+    <arg name="imu_bias_linear_acc_x" default="-0.3347"/>
+    <arg name="imu_bias_linear_acc_y" default="-0.6093"/>
+    <arg name="imu_bias_linear_acc_z" default="-0.0931"/>
+    <!-- parameter setting -->
+
+    <!-- threshold setting -->
+    <arg name="ndt_compesated_threshold" default="1.0"/>
+    <arg name="ndt_reliability_threshold" default="30.0"/>
+    <arg name="ndt_iteration_threshold" default="10.0"/>
+    <arg name="ndt_score_threshold" default="15.0"/>
+    <arg name="ndt_time_cost_threshold" default="100.0"/>
+    <arg name="ndt_gps_sat_threshold" default="10"/>
+    <arg name="state_check_threshold" default="3.0"/>
+    <arg name="gps_covariance_threshold" default="0.0005"/>
+
+    <!-- threshold setting -->
+
+    <!-- TF broadcasting setting -->
+    <arg name="tf_map_2_base_link" default="true"/>
+    <arg name="tf_map_2_msf_link" default="true"/>
+    <!-- TF broadcasting setting -->
+
+    <node pkg="msf_localizer" type="msf_localizer" name="msf_localizer" output="screen">
+        <param name="IMU_topic" value="$(arg IMU_topic)"/>
+        <param name="GPS_topic" value="$(arg GPS_topic)"/>
+        <param name="GPS_RPY_topic" value="$(arg GPS_RPY_topic)"/>
+        <param name="GPS_Info_topic" value="$(arg GPS_Info_topic)"/>
+        <param name="CAN_topic" value="$(arg CAN_topic)"/>
+        <param name="NDT_topic" value="$(arg NDT_topic)"/>
+        <param name="NDT_RPY_topic" value="$(arg NDT_RPY_topic)"/>
+        <param name="NDT_Reliability_topic" value="$(arg NDT_Reliability_topic)"/>
+        <param name="NDT_Status_topic" value="$(arg NDT_Status_topic)"/>
+    
+        <param name="MSF_output_pose_topic" value="$(arg MSF_output_pose_topic)"/>
+        <param name="MSF_output_state_topic" value="$(arg MSF_output_state_topic)"/>
+        <param name="MSF_output_fix_topic" value="$(arg MSF_output_fix_topic)"/>
+
+        <param name="gps_mode" value="$(arg gps_mode)"/>
+        <param name="ndt_mode" value="$(arg ndt_mode)"/>
+        <param name="can_mode" value="$(arg can_mode)"/>
+    
+        <param name="antenna_tf_x" value="$(arg antenna_tf_x)"/>
+        <param name="antenna_tf_y" value="$(arg antenna_tf_y)"/>
+        <param name="antenna_tf_z" value="$(arg antenna_tf_z)"/>
+
+        <param name="imu_bias_angular_vel_x" value="$(arg imu_bias_angular_vel_x)"/>
+        <param name="imu_bias_angular_vel_y" value="$(arg imu_bias_angular_vel_y)"/>
+        <param name="imu_bias_angular_vel_z" value="$(arg imu_bias_angular_vel_z)"/>
+        <param name="imu_bias_linear_acc_x" value="$(arg imu_bias_linear_acc_x)"/>
+        <param name="imu_bias_linear_acc_y" value="$(arg imu_bias_linear_acc_y)"/>
+        <param name="imu_bias_linear_acc_z" value="$(arg imu_bias_linear_acc_z)"/>
+
+        <param name="ndt_compesated_threshold" value="$(arg ndt_compesated_threshold)"/>
+        <param name="ndt_reliability_threshold" value="$(arg ndt_reliability_threshold)"/>
+        <param name="ndt_iteration_threshold" value="$(arg ndt_iteration_threshold)"/>
+        <param name="ndt_score_threshold" value="$(arg ndt_score_threshold)"/>
+        <param name="ndt_time_cost_threshold" value="$(arg ndt_time_cost_threshold)"/>
+        <param name="ndt_gps_sat_threshold" value="$(arg ndt_gps_sat_threshold)"/>
+        <param name="state_check_threshold" value="$(arg state_check_threshold)"/>
+        <param name="gps_covariance_threshold" value="$(arg gps_covariance_threshold)"/>
+
+        <param name="tf_map_2_base_link" value="$(arg tf_map_2_base_link)"/>
+        <param name="tf_map_2_msf_link" value="$(arg tf_map_2_msf_link)"/>
+
+    </node>
+</launch>
